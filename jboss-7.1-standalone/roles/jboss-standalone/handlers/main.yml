@@ -1,0 +1,10 @@
+---
+- name: restart jboss
+  systemd:
+    name: jboss-standalone.service
+    state: restarted
+
+- name: restart iptables
+  service:
+    name: iptables
+    state: restarted

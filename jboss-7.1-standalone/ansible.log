@@ -1,0 +1,84 @@
+2020-10-21 22:54:20,685 p=460 u=sukhdeep_sharma n=ansible | PLAY [all] ****************************************************************************************************************************
+2020-10-21 22:54:20,979 p=460 u=sukhdeep_sharma n=ansible | TASK [Gathering Facts] ****************************************************************************************************************
+2020-10-21 22:54:33,307 p=460 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 22:54:33,407 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Install Java 1.7 and some basic dependencies] ****************************************************************
+2020-10-21 22:54:33,618 p=481 u=sukhdeep_sharma n=ansible | [DEPRECATION WARNING]: Invoking "yum" only once while using a loop via squash_actions is deprecated. Instead of using a loop to supply
+ multiple items and specifying `name: "{{ item }}"`, please use `name: ['unzip', 'java-1.7.0-openjdk', 'libselinux-python', 
+'libsemanage-python']` and remove the loop. This feature will be removed in version 2.11. Deprecation warnings can be disabled by 
+setting deprecation_warnings=False in ansible.cfg.
+2020-10-21 22:55:21,932 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30] => (item=[u'unzip', u'java-1.7.0-openjdk', u'libselinux-python', u'libsemanage-python'])
+2020-10-21 22:55:22,014 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Download JBoss from jboss.org] *******************************************************************************
+2020-10-21 22:55:40,108 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 22:55:40,216 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Extract archive] *********************************************************************************************
+2020-10-21 22:55:45,555 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 22:55:45,661 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Rename install directory] ************************************************************************************
+2020-10-21 22:55:46,989 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 22:55:47,072 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Copying standalone.xml configuration file] *******************************************************************
+2020-10-21 22:55:49,739 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 22:55:49,810 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Add group "jboss"] *******************************************************************************************
+2020-10-21 22:55:51,205 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 22:55:51,293 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Add user "jboss"] ********************************************************************************************
+2020-10-21 22:55:52,778 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 22:55:52,852 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Change ownership of JBoss installation] **********************************************************************
+2020-10-21 22:55:54,970 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 22:55:55,058 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Copy the init script] ****************************************************************************************
+2020-10-21 22:55:59,086 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 22:55:59,160 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Copy the systemd unit file] **********************************************************************************
+2020-10-21 22:56:01,619 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 22:56:01,701 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Update the jboss-modules.jar file - remedy] ******************************************************************
+2020-10-21 22:56:04,176 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 22:56:04,265 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Start JBoss as a service] ************************************************************************************
+2020-10-21 22:56:05,909 p=460 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 22:56:06,008 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Enable service JBoss and ensure it is not masked] ************************************************************
+2020-10-21 22:56:07,470 p=460 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 22:56:07,562 p=460 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Enable JBoss to be started at boot] **************************************************************************
+2020-10-21 22:56:09,084 p=460 u=sukhdeep_sharma n=ansible | [WARNING]: The service (jboss) is actually an init script but the system is managed by systemd
+
+2020-10-21 22:56:09,084 p=460 u=sukhdeep_sharma n=ansible | fatal: [13.64.242.30]: FAILED! => {"changed": false, "msg": "Unable to start service jboss: Job for jboss.service failed because the control process exited with error code. See \"systemctl status jboss.service\" and \"journalctl -xe\" for details.\n"}
+2020-10-21 22:56:09,085 p=460 u=sukhdeep_sharma n=ansible | RUNNING HANDLER [jboss-standalone : restart jboss] ************************************************************************************
+2020-10-21 22:56:09,086 p=460 u=sukhdeep_sharma n=ansible | PLAY RECAP ****************************************************************************************************************************
+2020-10-21 22:56:09,086 p=460 u=sukhdeep_sharma n=ansible | 13.64.242.30               : ok=14   changed=12   unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2020-10-21 23:01:46,262 p=664 u=sukhdeep_sharma n=ansible | PLAY [all] ****************************************************************************************************************************
+2020-10-21 23:01:46,344 p=664 u=sukhdeep_sharma n=ansible | TASK [Gathering Facts] ****************************************************************************************************************
+2020-10-21 23:01:50,326 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:01:50,399 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Install Java 1.7 and some basic dependencies] ****************************************************************
+2020-10-21 23:01:50,434 p=685 u=sukhdeep_sharma n=ansible | [DEPRECATION WARNING]: Invoking "yum" only once while using a loop via squash_actions is deprecated. Instead of using a loop to supply
+ multiple items and specifying `name: "{{ item }}"`, please use `name: ['unzip', 'java-1.7.0-openjdk', 'libselinux-python', 
+'libsemanage-python']` and remove the loop. This feature will be removed in version 2.11. Deprecation warnings can be disabled by 
+setting deprecation_warnings=False in ansible.cfg.
+2020-10-21 23:01:51,952 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30] => (item=[u'unzip', u'java-1.7.0-openjdk', u'libselinux-python', u'libsemanage-python'])
+2020-10-21 23:01:52,048 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Download JBoss from jboss.org] *******************************************************************************
+2020-10-21 23:01:54,338 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:01:54,417 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Extract archive] *********************************************************************************************
+2020-10-21 23:01:54,852 p=664 u=sukhdeep_sharma n=ansible | skipping: [13.64.242.30]
+2020-10-21 23:01:54,876 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Rename install directory] ************************************************************************************
+2020-10-21 23:01:56,134 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:01:56,212 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Copying standalone.xml configuration file] *******************************************************************
+2020-10-21 23:01:58,424 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:01:58,495 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Add group "jboss"] *******************************************************************************************
+2020-10-21 23:01:59,711 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:01:59,790 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Add user "jboss"] ********************************************************************************************
+2020-10-21 23:02:01,147 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:02:01,228 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Change ownership of JBoss installation] **********************************************************************
+2020-10-21 23:02:03,061 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:02:03,146 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Copy the init script] ****************************************************************************************
+2020-10-21 23:02:05,126 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:02:05,181 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Copy the systemd unit file] **********************************************************************************
+2020-10-21 23:02:07,095 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:02:07,173 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Update the jboss-modules.jar file - remedy] ******************************************************************
+2020-10-21 23:02:09,063 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:02:09,120 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Start JBoss as a service] ************************************************************************************
+2020-10-21 23:02:10,667 p=664 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 23:02:10,739 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Enable service JBoss and ensure it is not masked] ************************************************************
+2020-10-21 23:02:12,046 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:02:12,126 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : deploy iptables rules] ***************************************************************************************
+2020-10-21 23:02:12,154 p=664 u=sukhdeep_sharma n=ansible | skipping: [13.64.242.30]
+2020-10-21 23:02:12,173 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Ensure that firewalld is installed] **************************************************************************
+2020-10-21 23:02:13,681 p=664 u=sukhdeep_sharma n=ansible | ok: [13.64.242.30]
+2020-10-21 23:02:13,756 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : Ensure that firewalld is started] ****************************************************************************
+2020-10-21 23:02:15,777 p=664 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30]
+2020-10-21 23:02:15,855 p=664 u=sukhdeep_sharma n=ansible | TASK [jboss-standalone : deploy firewalld rules] **************************************************************************************
+2020-10-21 23:02:17,685 p=664 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30] => (item=8080/tcp)
+2020-10-21 23:02:19,088 p=664 u=sukhdeep_sharma n=ansible | changed: [13.64.242.30] => (item=8443/tcp)
+2020-10-21 23:02:19,091 p=664 u=sukhdeep_sharma n=ansible | PLAY RECAP ****************************************************************************************************************************
+2020-10-21 23:02:19,091 p=664 u=sukhdeep_sharma n=ansible | 13.64.242.30               : ok=16   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   

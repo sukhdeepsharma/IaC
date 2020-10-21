@@ -1,0 +1,116 @@
+---
+- name: Install Java 1.7 and some basic dependencies
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+   - unzip
+   - java-1.7.0-openjdk
+   - libselinux-python  
+   - libsemanage-python
+
+- name: Download JBoss from jboss.org
+  get_url:
+    url: http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip
+    dest: /opt/jboss-as-7.1.1.Final.zip
+
+- name: Extract archive
+  unarchive:
+    dest: /usr/share
+    src: /opt/jboss-as-7.1.1.Final.zip
+    creates: /usr/share/jboss-as
+    copy: no
+
+  # Rename the dir to avoid encoding the version in the init script
+- name: Rename install directory
+  command: /bin/mv jboss-as-7.1.1.Final jboss-as 
+  args:
+    chdir: /usr/share 
+    creates: /usr/share/jboss-as
+
+- name: Copying standalone.xml configuration file
+  template:
+    src: standalone.xml
+    dest: /usr/share/jboss-as/standalone/configuration/
+  notify: restart jboss
+
+- name: Add group "jboss"
+  group:
+    name: jboss
+
+- name: Add user "jboss"
+  user:
+    name: jboss
+    group: jboss
+    home: /usr/share/jboss-as
+
+- name: Change ownership of JBoss installation
+  file:
+    path: /usr/share/jboss-as/
+    owner: jboss
+    group: jboss
+    state: directory
+    recurse: yes
+
+- name: Copy the init script
+  copy:
+    src: jboss-as-standalone.sh
+    dest: /etc/init.d/jboss
+    mode: 0755
+
+- name: Copy the systemd unit file
+  copy:
+    src: jboss-standalone.service
+    dest: /etc/systemd/system/
+    mode: 0755
+    owner : jboss
+    group : jboss
+
+- name: Update the jboss-modules.jar file - remedy
+  copy:
+    src: jboss-modules.jar
+    dest: /usr/share/jboss-as/
+    force: yes
+    mode: 0755
+
+- name: Start JBoss as a service
+  systemd:
+    state: started
+    name: jboss-standalone
+
+- name: Enable service JBoss and ensure it is not masked
+  systemd:
+    name: jboss-standalone
+    enabled: yes
+    masked: no
+
+- name: deploy iptables rules
+  template:
+    src: iptables-save
+    dest: /etc/sysconfig/iptables
+  when: ansible_distribution_major_version != "7"
+  notify: restart iptables
+
+- name: Ensure that firewalld is installed
+  yum:
+    name: firewalld
+    state: present
+  when: ansible_distribution_major_version == "7"
+
+- name: Ensure that firewalld is started
+  service:
+    name: firewalld
+    state: started
+  when: ansible_distribution_major_version == "7"
+
+- name: deploy firewalld rules
+  firewalld:
+    immediate: yes
+    port: "{{ item }}"
+    state: enabled
+    permanent: yes
+  when: ansible_distribution_major_version == "7"
+  with_items:
+  - "{{ http_port }}/tcp"
+  - "{{ https_port }}/tcp"
+
