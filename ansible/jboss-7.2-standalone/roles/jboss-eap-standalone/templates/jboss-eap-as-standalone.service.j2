@@ -1,0 +1,14 @@
+[Unit]
+Description=JBoss EAP instance ({{ jboss_eap_instance_name }})
+After=syslog.target network.target
+
+[Service]
+Type=simple
+Environment=JBOSS_HOME={{ jboss_home }}
+Environment=JBOSS_USER={{ jboss.user }}
+ExecStart={{ jboss_home }}/bin/standalone.sh
+ExecStop={{ jboss_home }}/bin/standalone.sh
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

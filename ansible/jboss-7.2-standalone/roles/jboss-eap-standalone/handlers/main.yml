@@ -1,0 +1,12 @@
+---
+- name: restart jboss 
+  systemd: 
+    name: jboss-eap-as-standalone.service
+    state: restarted
+    daemon_reload: yes
+
+- name: enable jboss-eap service
+  systemd: 
+    name: jboss-eap-as-standalone.service
+    enabled: yes
+    daemon_reload: yes
