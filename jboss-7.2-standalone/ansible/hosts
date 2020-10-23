@@ -1,0 +1,2 @@
+[webservers]
+web-vm ansible_ssh_host=13.64.232.178

@@ -1,0 +1,18 @@
+---
+# vars file for jboss-eap-standalone
+
+# Directory containing the unpacked golden image.
+jboss_home: /opt/jboss-eap
+
+# JBoss EAP instance name
+jboss_eap_instance_name: "Standalone"
+
+# System user configuration
+jboss:
+  user: jboss-eap
+  group: jboss-eap
+  user_home: "/opt/jboss-eap"
+
+http_port: 8080
+https_port: 8443
+management_console_port: 9990
