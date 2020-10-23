@@ -7,7 +7,7 @@
 	2. Place the jboss-eap-7.2.0.zip file in roles/jboss-eap-standalone/files folder	
 
 These playbooks deploy a very basic implementation of JBoss Enterprise Application Server
-7.2 version. To use them, first edit the `hosts` inventory file to contain the
+7.2 version on Azure Cloud VM provisioned via terraform. To use them, first edit the `hosts` inventory file to contain the
 hostnames of the machines on which you want JBoss deployed, and edit the 
 group_vars/all file to set any JBoss configuration parameters you need.
 
