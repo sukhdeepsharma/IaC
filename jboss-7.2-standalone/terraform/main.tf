@@ -9,7 +9,7 @@ terraform{
     storage_account_name =  "tstate123sa"
     container_name = "sides"
     key            = "sides.tfstate"
-    access_key  = "lL98ruzb12F+0wuy6L2J8wDRqbhjzrOalMxwUbVS6Fc5LHsnNBLpXdWNt8SbUepaZP0CFpPdTVgiRFENDRXFkQ=="
+    access_key  = "${var.access_key}"
   }
 }
 
